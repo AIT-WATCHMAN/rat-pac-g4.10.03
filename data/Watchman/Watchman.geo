@@ -21,44 +21,27 @@ valid_end: [0, 0],
 mother: "world", // world volume has no mother
 type: "tube",
 r_max: 14000.00, // changed to accommodate 0.5m-thick layer of concrete on walls (L. Kneale)
-size_z: 14000.00, // this will give a 1m layer of rock on the floor and 1.5m on the ceiling
-position: [0.0, 0.0, 0.0],
+size_z: 13750.00, 
+position: [0.0, 0.0, -250.0], //this will allow for the concrete layer on the floor and not on the ceiling
 material: "rock",
 invisible: 1,
 }
 
 
-//Create a 0.5m concrete layer on the walls
+//Create a 0.5m concrete layer on the walls and base
 {
 name: "GEO",
 index: "concrete" // changed from "gunite" for updated design (L. Kneale) 
 valid_begin: [0, 0],
 valid_end: [0, 0],
-mother: "rock_1", // world volume has no mother
+mother: "rock_1",
 type: "tube",
-r_max: 13000.0, // changed to incorporate 0.5m layer of concrete on walls (L.Kneale)
-size_z: 12500.0, //changed to incorporate 0.5m layer of concrete on walls
-position: [0.0, 0.0, 0.0],
+r_max: 13000.0, // changed to incorporate 0.5m layer of concrete on walls (L.Kneale) (cavern size is 25m i.e. 12.5m radius)
+size_z: 12750.0,
+position: [0.0, 0.0, -250.0], // this will give a concrete layer on the floor and not on the ceiling
 material: "concrete", // changed from "gunite" (L. Kneale)
 invisible: 1,
 }
-
-
-Create a 0.5m-thick concrete base
-{
-name: "GEO",
-index: "concrete",
-valid_begin: [0, 0],
-valid_end: [0, 0],
-mother: rock_1
-type: "tube",
-r_max: 13000.0,
-size_z: 250.0,
-position: [0.0, 0.0, -12750.0],
-material: "concrete",
-invisible: 1,
-}
-
 
 
 //Create the cavern space between the tank and concrete/rock
@@ -67,12 +50,12 @@ name: "GEO",
 index: "cavern",
 valid_begin: [0, 0],
 valid_end: [0, 0],
-mother: "concrete", // world volume has no mother
+mother: "concrete", // but this volume has conrete at the bottom and sides and rock_1 above
 type: "tube",
 r_max: 12500.0,
 size_z: 12500.0,
 position: [0.0, 0.0, 0.0],
-material: "air", //rock?
+material: "air",
 invisible: 1,
 }
 
@@ -88,8 +71,8 @@ valid_begin: [0, 0],
 valid_end: [0, 0],
 mother: "cavern",
 type: "tube",
-r_max: 8000.0,
-size_z: 8000.0,
+r_max: 10000.0, //changed tank size L. Kneale
+size_z: 10000.0,
 position: [0.0, 0.0, 0.0],
 material: "stainless_steel",
 color: [0.2,0.2,0.2,0.1],
@@ -103,8 +86,8 @@ valid_begin: [0, 0],
 valid_end: [0, 0],
 mother: "tank",
 type: "tube",
-r_max: 7984.125,
-size_z: 7984.125, //half height, mm
+r_max: 9984.125, //changed detector size L. Kneale
+size_z: 9984.125, //half height, mm
 position: [0.0, 0.0, 0.0],
 material: "doped_water",
 color: [0.2,0.2,0.2,0.1],
